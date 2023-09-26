@@ -40,6 +40,14 @@ server:
   standalone:
     enabled: false
 
+  extraSecretEnvironmentVars:
+    - envName: AWS_ACCESS_KEY_ID
+      secretName: eks-cred
+      secretKey: AWS_ACCESS_KEY_ID
+    - envName: AWS_SECRET_ACCESS_KEY
+      secretName: eks-cred
+      secretKey: AWS_SECRET_ACCESS_KEY
+
   ha:
     enabled: true
     replicas: 3
@@ -54,6 +62,11 @@ server:
           tls_disable = 1
           address = "[::]:8200"
           cluster_address = "[::]:8201"
+        }
+
+        seal "awskms" {
+          region = "us-east-1"
+          kms_key_id = "7be48e80-31e8-412b-8988-48312b2d8023"
         }
 
         storage "raft" {
