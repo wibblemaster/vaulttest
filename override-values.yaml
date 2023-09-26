@@ -23,14 +23,19 @@ server:
 
   readinessProbe:
     enabled: true
-    path: "/v1/sys/health/standbyok=true&sealedcode=204&uninitcode-204"
-  livenessProbe:
-    enabled: true
-    path: "/v1/sys/health?standbyok=true"
-    intialDelaySeconds: 60
+    exec:
+      command:
+      - /bin/sh
+      - -ec
+      - vault status -tks-skip-verify
+    failureThreashold: 2
+    initDelaySeconds: 5
+    periodSeconds: 5
+    successThreadhold: 1
+    timeoutSeconds: 3
 
   auditStorage:
-    enabled: true
+    enabled: false
 
   standalone:
     enabled: false
@@ -48,7 +53,7 @@ server:
         listener "tcp" {
           tls_disable = 1
           address = "[::]:8200"
-          cluster_address = "[::]8201"
+          cluster_address = "[::]:8201"
         }
 
         storage "raft" {
