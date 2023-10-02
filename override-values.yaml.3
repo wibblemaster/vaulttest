@@ -9,7 +9,6 @@ injector:
     tag: "latest"
 
 server:
-
   dataStorage:
     enabled: true
     size: 20Gi
@@ -67,11 +66,11 @@ server:
 
         seal "awskms" {
           region = "us-east-1"
-          kms_key_id = "8b2e1797-8f0e-48f7-bab9-c48940035977"
+          kms_key_id = "ae8eb357-cd38-467d-a625-d9860278e1ed"
         }
 
         storage "raft" {
-          path = "/vault/data"
+          path = "/vault/file"
 
           retry_join {
           leader_api_addr = "http://vault-0.vault-internal:8200"
