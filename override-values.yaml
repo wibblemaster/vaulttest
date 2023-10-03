@@ -67,7 +67,7 @@ server:
 
         seal "awskms" {
           region = "us-east-1"
-          kms_key_id = "8b2e1797-8f0e-48f7-bab9-c48940035977"
+          kms_key_id = "f010da63-15bf-4b83-9213-7759ee517310"
         }
 
         storage "raft" {
@@ -88,7 +88,7 @@ server:
 
         disable_mlock = true
         service_registration "kubernetes" {}
-        plugin_directory = "/vault/file/plugin"
+        plugin_directory = "/vault/data/plugin"
 
 ui:
   enabled: true
