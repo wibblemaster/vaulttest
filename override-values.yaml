@@ -67,7 +67,7 @@ server:
 
         seal "awskms" {
           region = "us-east-1"
-          kms_key_id = "f010da63-15bf-4b83-9213-7759ee517310"
+          kms_key_id = "33758fc2-e2bb-483b-b520-5c0bad160c72"
         }
 
         storage "raft" {
